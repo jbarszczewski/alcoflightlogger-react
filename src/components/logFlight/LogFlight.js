@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import * as flightActions from '../../actions/flightActions';
 
 class LogFlight extends Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-
     componentWillMount() {
         this.props.actions.loadFlights();
     }
@@ -32,7 +28,7 @@ LogFlight.propTypes = {
     flights: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         flights: state.flights
     };

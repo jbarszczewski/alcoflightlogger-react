@@ -6,7 +6,7 @@ const flights = [
 
 class FlightApi {
     static getAllFlights() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(Object.assign([], flights));
             }, delay);
