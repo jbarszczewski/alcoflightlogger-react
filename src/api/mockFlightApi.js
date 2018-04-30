@@ -12,6 +12,16 @@ class FlightApi {
             }, delay);
         });
     }
+
+    static addFlight(flight) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+            flight.id = flights.length + 1;
+            flights.push(flight);
+            resolve(flight);
+            }, delay);
+        })
+    }
 }
 
 export default FlightApi;

@@ -5,6 +5,7 @@ class Login extends Component {
         return (
             <div>
                 <p>Zaloguj sie</p>
+                
             </div>
         );
     }
