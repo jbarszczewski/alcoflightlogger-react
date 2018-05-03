@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
 //import * as flightActions from '../../actions/flightActions';
 import * as locationActions from '../../actions/locationActions';
+import LocationMarker from './LocationMarker';
 
 class Map extends Component {
     constructor(props, context) {
@@ -21,6 +22,7 @@ class Map extends Component {
                     lng: position.coords.longitude,
                     mapZoom: this.props.mapZoom
                 });
+                this.forceUpdate();
             }, (error) => {
                 alert(error.message);
             },
@@ -47,13 +49,16 @@ class Map extends Component {
             <div style={{ height: '60vh', width: '80%' }}>
                 <p>{this.props.currentLocation.lat}</p>
                 <p>{this.props.currentLocation.lng}</p>
-                <p>{this.props.mapZoom}</p>
                 <input type="submit" value="refresh" onClick={this.refreshLocation} />
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyAJvxe_VovUSvjSVJFre82FmcBLuP6-VwA' }}
                     center={this.props.currentLocation}
                     zoom={this.props.mapZoom}
                     onChange={this.mapChanged}>
+                    <LocationMarker
+                        lat={this.props.currentLocation.lat}
+                        lng={this.props.currentLocation.lng}
+                        text={'Lecisz kurwa tutaj!'} />
                 </GoogleMapReact>
             </div>
         )

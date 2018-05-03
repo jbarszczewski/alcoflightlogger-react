@@ -10,6 +10,11 @@ export default function flightReducer(state = initialState.flights, action) {
                 ...state,
                 Object.assign({}, action.flight)
             ];
+        case types.ADD_STOP_SUCCESS:
+            return [
+                ...state.filter(flight => flight.id !== action.flight.id),
+                Object.assign({}, action.flight)
+            ];
         default:
             return state;
     }

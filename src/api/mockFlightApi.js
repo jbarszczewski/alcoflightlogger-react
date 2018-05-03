@@ -1,7 +1,7 @@
-const delay = 100;
+const delay = 1000;
 const flights = [
-    { id: 1, stops: 5 },
-    { id: 2, stops: 1 }
+    { id: 1, stops: [{ id: 1, lat: 50, lng: 0 }, { id: 2, lat: 51, lng: -1 }] },
+    { id: 2, stops: [{ id: 1, lat: 51, lng: -0.3 }] }
 ];
 
 class FlightApi {
@@ -13,12 +13,25 @@ class FlightApi {
         });
     }
 
-    static addFlight(flight) {
+    static getFlight(id) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-            flight.id = flights.length + 1;
-            flights.push(flight);
-            resolve(flight);
+                const flight = flights.find(flight => flight.id == id);
+                if (flight) {
+                    resolve(flight);
+                } else {
+                    reject(`No flight with id ${id}`);
+                }
+            }, delay);
+        })
+    }
+
+    static addFlight(flight) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                flight.id = flights.length + 1;
+                flights.push(flight);
+                resolve(flight);
             }, delay);
         })
     }
