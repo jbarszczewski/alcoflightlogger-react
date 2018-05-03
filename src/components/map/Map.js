@@ -6,33 +6,53 @@ import GoogleMapReact from 'google-map-react';
 import * as flightActions from '../../actions/flightActions';
 
 class Map extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+        currentLocation: {lat: 0, lng: 0},
+        mapZoom: 18
+    };
+        this.refreshLocation = this.refreshLocation.bind(this);
+        this.mapChanged = this.mapChanged.bind(this);
+    }
+
+    refreshLocation(){
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.setState({ currentLocation: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude}});
+                this.forceUpdate();
+            }, (error) => {
+                alert(error.message);
+            },
+            { enableHighAccuracy: true, timeout: 15000 });
+        } else {
+            alert('No geolocation available');
+        }
+    }
+
+    mapChanged(event){
+        // {center, zoom, bounds, ...other}        
+        this.setState({currentLocation: {lat: event.center.lat, lng: event.center.lng}, mapZoom: event.zoom})
+    }
 
     componentWillMount() {
-        this.currentLocation = {lat: 51.5, lng: 0}
-        if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.currentLocation = {
-                lat: position.coords.latitude,
-                 lng: position.coords.longitude}
-        }, (error) => {
-            alert(error.message);
-        },
-        { enableHighAccuracy: false, timeout: 5000 });
-    } else {
-        alert('No geolocation available');
-    }
-    
+        this.refreshLocation();
     }
 
     render() {
         return(
             <div style={{height: '60vh', width: '80%'}}>
-            <p>{this.currentLocation.lat}</p>
-            <p>{this.currentLocation.lng}</p>
+            <p>{this.state.currentLocation.lat}</p>
+            <p>{this.state.currentLocation.lng}</p>
+            <p>{this.state.mapZoom}</p>
+            <input type="submit" value="refresh" onClick={this.refreshLocation}/>
             <GoogleMapReact
             bootstrapURLKeys={{key: 'AIzaSyAJvxe_VovUSvjSVJFre82FmcBLuP6-VwA'}}
-            defaultCenter={this.currentLocation}
-            defaultZoom={this.props.mapZoom}>
+            center={this.state.currentLocation}
+            zoom={this.state.mapZoom}
+            onChange={this.mapChanged}>
           </GoogleMapReact>
             </div>
         )
@@ -40,15 +60,13 @@ class Map extends Component {
 }
 
 Map.propTypes = {
+    actions: PropTypes.object.isRequired,
     currentLocation: PropTypes.object,
     mapZoom: PropTypes.number
 }
 
 function mapStateToProps(state) {
-    return {
-        currentLocation: {lat: 53.33, lng: 30.33},
-        mapZoom: 11
-    }
+    return {}
 }
 
 function mapDispatchToProps(dispatch){

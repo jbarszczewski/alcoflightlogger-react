@@ -5,6 +5,7 @@ import configureStore from './stores/configureStore';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/app/App';
+import {updateLocation} from './actions/flightActions';
 
 const store = configureStore();
 
