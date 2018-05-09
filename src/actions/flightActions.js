@@ -9,8 +9,8 @@ export function addFlightSuccess(flight) {
     return { type: types.ADD_FLIGHT_SUCCESS, flight };
 }
 
-export function addStopSuccess(flight) {
-    return { type: types.ADD_STOP_SUCCESS, flight };
+export function addStopSuccess(stop) {
+    return { type: types.ADD_STOP_SUCCESS, stop };
 }
 
 export function loadFlights() {
@@ -35,11 +35,10 @@ export function addFlight(flight) {
 
 export function addStop(stop) {
     return function (dispatch) {
-        return mockFlightApi.getFlight(stop.flightId).then(flight => {
-            flight.stops.push({ id: flight.stops.length + 1, lat: stop.lat, lng: stop.lng });
-            dispatch(addStopSuccess(flight));
-        }).catch(error => {
-            throw (error);
-        })
+        return mockFlightApi.addStop(stop)
+            .then(dispatch(addStopSuccess(stop)))
+            .catch(error => {
+                throw (error);
+            })
     }
 }

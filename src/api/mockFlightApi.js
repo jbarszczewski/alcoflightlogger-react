@@ -16,11 +16,26 @@ class FlightApi {
     static getFlight(id) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const flight = flights.find(flight => flight.id == id);
+                const flight = flights.find(flight => flight.id === id);
                 if (flight) {
                     resolve(flight);
                 } else {
                     reject(`No flight with id ${id}`);
+                }
+            }, delay);
+        })
+    }
+
+    static addStop(stop) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const flight = flights.find(flight => flight.id === stop.flightId);
+                if (flight) {
+                    const newStop = { id: flight.stops.length + 1, lat: stop.lat, lng: stop.lng };
+                    flight.stops.push(newStop)
+                    resolve(newStop);
+                } else {
+                    reject(`No flight with id ${stop.flightId}`);
                 }
             }, delay);
         })
