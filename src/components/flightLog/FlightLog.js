@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as flightActions from '../../actions/flightActions';
 import Map from '../map/Map';
+import { Button } from 'react-bootstrap';
 
 class FlightLog extends Component {
     constructor(props, context) {
@@ -51,18 +52,14 @@ class FlightLog extends Component {
                         </div>
                     )}
 
-                    <input
-                        type="submit"
+                    <Button
                         disabled={this.props.loading}
-                        value={this.props.loading ? 'Saving...' : 'New flight'}
-                        className="btn btn-primary"
-                        onClick={this.onCreateNewFlight} />
-                    <input
-                        type="submit"
+                        bsStyle="primary"
+                        onClick={this.onCreateNewFlight}>{this.props.loading ? 'Saving...' : 'New flight'}</Button>
+                    <Button
                         disabled={this.props.loading}
-                        value={this.props.loading ? 'Saving...' : 'Fuel stop'}
-                        className="btn btn-primary"
-                        onClick={this.addNewStop} />
+                        bsStyle="primary"
+                        onClick={this.addNewStop}>{this.props.loading ? 'Saving...' : 'Fuel stop'}</Button>
                 </div>
             </div>
         );

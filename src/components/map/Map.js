@@ -6,6 +6,7 @@ import GoogleMapReact from 'google-map-react';
 //import * as flightActions from '../../actions/flightActions';
 import * as locationActions from '../../actions/locationActions';
 import LocationMarker from './LocationMarker';
+import { Button } from 'react-bootstrap';
 
 class Map extends Component {
     constructor(props, context) {
@@ -49,7 +50,7 @@ class Map extends Component {
             <div style={{ height: '60vh', width: '80%' }}>
                 <p>{this.props.currentLocation.lat}</p>
                 <p>{this.props.currentLocation.lng}</p>
-                <input type="submit" value="refresh" onClick={this.refreshLocation} />
+                <Button bsStyle="primary" onClick={this.refreshLocation}>refresh</Button>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyAJvxe_VovUSvjSVJFre82FmcBLuP6-VwA' }}
                     center={this.props.currentLocation}
