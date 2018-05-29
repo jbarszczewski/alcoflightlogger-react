@@ -23,7 +23,7 @@ class FlightApi {
                     reject(`No flight with id ${id}`);
                 }
             }, delay);
-        })
+        });
     }
 
     static addStop(stop) {
@@ -38,7 +38,7 @@ class FlightApi {
                     reject(`No flight with id ${stop.flightId}`);
                 }
             }, delay);
-        })
+        });
     }
 
     static addFlight(flight) {
@@ -48,7 +48,20 @@ class FlightApi {
                 flights.push(flight);
                 resolve(flight);
             }, delay);
-        })
+        });
+    }
+
+    static login(credentials) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (credentials.email === 'test@email.com' && credentials.password === 'pass') {
+                    const account = { id: 7, name: 'testUser' };
+                    resolve(account);
+                } else {
+                    reject('Incorrect user credentials');
+                }
+            }, delay);
+        });
     }
 }
 
