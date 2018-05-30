@@ -81,7 +81,7 @@ class Login extends Component {
 
 Login.propTypes = {
     actions: PropTypes.object.isRequired,
-    account: PropTypes.array,
+    account: PropTypes.object,
     error: PropTypes.string
 }
 
