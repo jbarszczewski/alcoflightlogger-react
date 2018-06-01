@@ -9,10 +9,10 @@ let wrapper;
 let store;
 
 beforeEach(() => {
-    store = mockStore(initialState)
-    wrapper = shallow(<Map store={store} />)
+    store = mockStore(initialState);
+    wrapper = shallow(<Map store={store} />);
 })
 
 it('renders without crashing', () => {
-    expect(wrapper.find(Map).length).toEqual(1)
+    expect(wrapper).toHaveLength(1)
 });
