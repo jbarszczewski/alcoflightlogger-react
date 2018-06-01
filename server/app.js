@@ -31,4 +31,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 });
 
+var mongoose = require('mongoose');
+var secrets = require('./config/secrets');
+var url = `mongodb://${secrets.dbUser}:${secrets.dbPassword}@ds139890.mlab.com:39890/afl-dev`;
+mongoose.Promise = require('bluebird');
+mongoose.connect(url, { promiseLibrary: require('bluebird') })
+  .then(() =>  console.log('Connection to db succesful'))
+  .catch((err) => console.error(err));
+
 module.exports = app;

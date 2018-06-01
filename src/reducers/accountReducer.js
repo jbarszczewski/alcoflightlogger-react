@@ -5,6 +5,7 @@ export default function accountReducer(state = initialState.account, action) {
     if (action.type === types.LOGIN_SUCCESS) {
         return action.account;
     } else if (action.type === types.LOGIN_ERROR) {
+        debugger
         return null;
     } else {
         return state;
