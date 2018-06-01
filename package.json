@@ -17,6 +17,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "~4.16.0",
+    "fetch-mock": "^6.4.3",
     "google-map-react": "^1.0.2",
     "http-errors": "~1.6.2",
     "mongoose": "^5.1.3",

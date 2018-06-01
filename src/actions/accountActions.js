@@ -1,15 +1,15 @@
 import * as types from './actionTypes';
 
 export function loginSuccess(account) {
-    return { type: types.LOGIN_SUCCESS, account };
+    return {type: types.LOGIN_SUCCESS, account};
 }
 
-export function loginError(error) {
-    return { type: types.LOGIN_ERROR, error }
-}
+export const loginError = (error) => ({
+    type: types.LOGIN_ERROR, error
+});
 
-export function login(credentials) {
-    return function (dispatch) {
+export const login = (credentials) => {
+    return dispatch => {
         return fetch(`/user/${credentials.email}`)
             .then(res => {
                 res.json()
@@ -20,7 +20,4 @@ export function login(credentials) {
                     });
             });
     }
-}
-
-
-
+};
