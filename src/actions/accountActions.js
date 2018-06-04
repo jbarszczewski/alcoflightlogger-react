@@ -10,7 +10,7 @@ export const loginError = (error) => {
 
 export const login = (credentials) => {
     return dispatch => {
-        return fetch(`/user/${credentials.email}`)
+        return fetch(`api/user/${credentials.email}`)
             .then(res => res.json())
             .then(account => {
                 dispatch(loginSuccess(account));
