@@ -33,6 +33,14 @@ class FlightLog extends Component {
     render() {
         return (
             <Grid>
+                <Row>
+                    <Button
+                        disabled={this.props.loading}
+                        bsStyle="primary"
+                        bsSize="large"
+                        block
+                        onClick={this.addNewStop}>{this.props.loading ? 'Saving...' : 'Fuel stop'}</Button>
+                </Row>
                 <Row className="show-grid">
                     <Col sm={6} md={3}>
                         <div style={{ backgroundColor: 'beige' }}>
@@ -40,7 +48,6 @@ class FlightLog extends Component {
                         </div>
                     </Col>
                     <Col sm={6} md={3}>
-
                         <div style={{ backgroundColor: 'lightgray' }}>
                             <p>Twoje loty</p>
                             {this.props.flights.map(flight =>
@@ -61,10 +68,6 @@ class FlightLog extends Component {
                                 disabled={this.props.loading}
                                 bsStyle="primary"
                                 onClick={this.onCreateNewFlight}>{this.props.loading ? 'Saving...' : 'New flight'}</Button>
-                            <Button
-                                disabled={this.props.loading}
-                                bsStyle="primary"
-                                onClick={this.addNewStop}>{this.props.loading ? 'Saving...' : 'Fuel stop'}</Button>
                         </div>
                     </Col>
                 </Row>

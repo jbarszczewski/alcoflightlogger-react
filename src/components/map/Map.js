@@ -87,13 +87,11 @@ class Map extends Component {
     render() {
         return (
             <div>
-                <p>{this.props.currentLocation.lat}</p>
-                <p>{this.props.currentLocation.lng}</p>
-                <Button bsStyle="primary" onClick={this.refreshLocation}>refresh</Button>
                 <MyMapComponent
                     zoom={this.props.mapZoom}
                     center={{ lat: this.props.currentLocation.lat, lng: this.props.currentLocation.lng }}
                     onDragEnd={this.mapChanged} onZoomChanged={this.mapChanged} />
+                <Button bsStyle="primary" onClick={this.refreshLocation}>Refresh position</Button>
             </div>
         )
     }
