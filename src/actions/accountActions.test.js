@@ -22,9 +22,7 @@ describe('account action', () => {
         fetchMock.get('*', accountData);
         return store.dispatch(actions.login({ email: 'test', password: 'pass' }))
             .then(() => {
-                const storeActions = store.getActions();
-                console.log(storeActions);
-                expect(storeActions).toEqual(
+                expect(store.getActions()).toEqual(
                     [
                         { type: types.LOGIN_SUCCESS, account: accountData }
                     ]);
