@@ -2,13 +2,13 @@ import configureMockStore from 'redux-mock-store';
 import fetchMock from 'fetch-mock';
 import * as actions from './accountActions';
 import * as types from './actionTypes';
-import thunk  from 'redux-thunk'
+import thunk from 'redux-thunk'
 
 describe('account action', () => {
     let store;
-    const middlewares = [thunk];
 
     beforeEach(() => {
+        const middlewares = [thunk];
         const mockStore = configureMockStore(middlewares);
         store = mockStore({});
     });
@@ -18,14 +18,16 @@ describe('account action', () => {
     });
 
     it('gets account by email', () => {
-    fetchMock.get('*', { hello: 'world' });
-    store.dispatch(actions.login({ email: 'test', password: 'pass' }))
-     .then(() => {
-            expect(store.getActions()).toEqual(
-                [
-                    { type: types.LOGIN_SUCCESS },
-                    { payload: { hello: 'world' } }
-                ]);
-        });
+        const accountData = { username: 'testUser' };
+        fetchMock.get('*', accountData);
+        return store.dispatch(actions.login({ email: 'test', password: 'pass' }))
+            .then(() => {
+                const storeActions = store.getActions();
+                console.log(storeActions);
+                expect(storeActions).toEqual(
+                    [
+                        { type: types.LOGIN_SUCCESS, account: accountData }
+                    ]);
+            });
     });
 });
