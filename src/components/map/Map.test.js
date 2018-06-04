@@ -8,11 +8,13 @@ const mockStore = configureStore();
 let wrapper;
 let store;
 
-beforeEach(() => {
-    store = mockStore(initialState)
-    wrapper = shallow(<Map store={store} />)
-})
-
-it('renders without crashing', () => {
-    //expect(wrapper.find(Map).length).toEqual(1)
+describe('Map component', () => {
+    beforeEach(() => {
+        store = mockStore(initialState);
+        wrapper = shallow(<Map store={store} />);
+    })
+    
+    it('renders without crashing', () => {
+        expect(wrapper).toHaveLength(1)
+    });
 });

@@ -14,5 +14,5 @@ beforeEach(() => {
 })
 
 it('renders without crashing', () => {
-    expect(wrapper.find(FlightLog).length).toEqual(1)
+    expect(wrapper).toHaveLength(1)
 });
