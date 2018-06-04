@@ -2,11 +2,51 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import GoogleMapReact from 'google-map-react';
-//import * as flightActions from '../../actions/flightActions';
 import * as locationActions from '../../actions/locationActions';
-import LocationMarker from './LocationMarker';
 import { Button } from 'react-bootstrap';
+
+import { compose, withHandlers, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+
+const MyMapComponent = compose(
+    withProps({
+        googleMapURL:
+            "https://maps.googleapis.com/maps/api/js?key=AIzaSyAJvxe_VovUSvjSVJFre82FmcBLuP6-VwA&v=3.exp&libraries=geometry,drawing,places",
+        loadingElement: <div style={{ height: `100%` }} />,
+        containerElement: <div style={{ height: `400px` }} />,
+        mapElement: <div style={{ height: `100%` }} />
+    }),
+    withHandlers(() => {
+        const refs = {
+            map: undefined,
+        }
+
+        return {
+            onMapMounted: () => ref => {
+                refs.map = ref
+            },
+            onDragEnd: ({ onDragEnd }) => () => {
+                const center = refs.map.getCenter();
+                onDragEnd({ center: { lat: center.lat(), lng: center.lng() }, zoom: refs.map.getZoom() })
+            },
+            onZoomChanged: ({ onZoomChanged }) => () => {
+                const center = refs.map.getCenter();
+                onZoomChanged({ center: { lat: center.lat(), lng: center.lng() }, zoom: refs.map.getZoom() })
+            }
+        }
+    }),
+    withScriptjs,
+    withGoogleMap
+)(props => (
+    <GoogleMap
+        zoom={props.zoom}
+        center={props.center}
+        ref={props.onMapMounted}
+        onDragEnd={props.onDragEnd}
+        onZoomChanged={props.onZoomChanged}>
+        <Marker position={props.center} />
+    </GoogleMap>
+));
 
 class Map extends Component {
     constructor(props, context) {
@@ -23,7 +63,6 @@ class Map extends Component {
                     lng: position.coords.longitude,
                     mapZoom: this.props.mapZoom
                 });
-                this.forceUpdate();
             }, (error) => {
                 alert(error.message);
             },
@@ -47,20 +86,14 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{ height: '60vh', width: '80%' }}>
+            <div>
                 <p>{this.props.currentLocation.lat}</p>
                 <p>{this.props.currentLocation.lng}</p>
                 <Button bsStyle="primary" onClick={this.refreshLocation}>refresh</Button>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyAJvxe_VovUSvjSVJFre82FmcBLuP6-VwA' }}
-                    center={this.props.currentLocation}
+                <MyMapComponent
                     zoom={this.props.mapZoom}
-                    onChange={this.mapChanged}>
-                    <LocationMarker
-                        lat={this.props.currentLocation.lat}
-                        lng={this.props.currentLocation.lng}
-                        text={'Lecisz kurwa tutaj!'} />
-                </GoogleMapReact>
+                    center={{ lat: this.props.currentLocation.lat, lng: this.props.currentLocation.lng }}
+                    onDragEnd={this.mapChanged} onZoomChanged={this.mapChanged} />
             </div>
         )
     }

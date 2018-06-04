@@ -4,7 +4,7 @@ import Menu from './Menu';
 
 let wrapper;
 
-describe('Menu', () => {
+describe('Menu component', () => {
     beforeEach(() => {
         wrapper = shallow(<Menu />);
     });

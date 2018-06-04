@@ -8,11 +8,13 @@ const mockStore = configureStore();
 let wrapper;
 let store;
 
-beforeEach(() => {
-    store = mockStore(initialState)
-    wrapper = shallow(<FlightLog store={store} />)
-})
+describe('FlightLog component', () => {
+    beforeEach(() => {
+        store = mockStore(initialState)
+        wrapper = shallow(<FlightLog store={store} />)
+    })
 
-it('renders without crashing', () => {
-    expect(wrapper).toHaveLength(1)
+    it('renders without crashing', () => {
+        expect(wrapper).toHaveLength(1)
+    });
 });
