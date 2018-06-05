@@ -1,11 +1,11 @@
 import * as types from './actionTypes';
 
 export const loginSuccess = (account) => {
-    return { type: types.LOGIN_SUCCESS, account };
+    return { type: types.LOGIN_SUCCESS, payload: account };
 };
 
 export const loginError = (error) => {
-    return { type: types.LOGIN_ERROR, error };
+    return { type: types.LOGIN_ERROR, payload: error };
 };
 
 export const login = (credentials) => {

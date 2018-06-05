@@ -24,7 +24,7 @@ describe('account action', () => {
             .then(() => {
                 expect(store.getActions()).toEqual(
                     [
-                        { type: types.LOGIN_SUCCESS, account: accountData }
+                        { type: types.LOGIN_SUCCESS, payload: accountData }
                     ]);
             });
     });
