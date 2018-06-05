@@ -12,4 +12,8 @@ describe('Menu component', () => {
     it('renders without crashing', () => {
         expect(wrapper).toHaveLength(1);
     });
+
+    it('renders correctly', () => {
+        expect(wrapper).toMatchSnapshot();
+    });
 });
