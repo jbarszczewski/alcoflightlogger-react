@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Menu from './../common/Menu';
+import Menu from './../menu/Menu';
 import FlightLog from './../flightLog/FlightLog';
 import Login from './../account/Login';
 

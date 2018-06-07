@@ -26,6 +26,7 @@ ShallowWrapper {
                 <NavbarBrand>
                         <Link
                                 activeclassname="active"
+                                id="logo"
                                 replace={false}
                                 to="/"
                         >
@@ -53,6 +54,7 @@ ShallowWrapper {
                                         active={false}
                                         disabled={false}
                                         eventKey={1}
+                                        id="flights"
                                 >
                                         Flights
                                 </NavItem>
@@ -68,6 +70,7 @@ ShallowWrapper {
                                         active={false}
                                         disabled={false}
                                         eventKey={2}
+                                        id="login"
                                 >
                                         Login
                                 </NavItem>
@@ -88,6 +91,7 @@ ShallowWrapper {
             <NavbarBrand>
                         <Link
                                     activeclassname="active"
+                                    id="logo"
                                     replace={false}
                                     to="/"
                         >
@@ -115,6 +119,7 @@ ShallowWrapper {
                                                 active={false}
                                                 disabled={false}
                                                 eventKey={1}
+                                                id="flights"
                                     >
                                                 Flights
                                     </NavItem>
@@ -130,6 +135,7 @@ ShallowWrapper {
                                                 active={false}
                                                 disabled={false}
                                                 eventKey={2}
+                                                id="login"
                                     >
                                                 Login
                                     </NavItem>
@@ -151,6 +157,7 @@ ShallowWrapper {
               <NavbarBrand>
                 <Link
                                 activeclassname="active"
+                                id="logo"
                                 replace={false}
                                 to="/"
                 >
@@ -169,6 +176,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <Link
                   activeclassname="active"
+                  id="logo"
                   replace={false}
                   to="/"
 >
@@ -183,6 +191,7 @@ ShallowWrapper {
                 "props": Object {
                   "activeclassname": "active",
                   "children": "AFL",
+                  "id": "logo",
                   "replace": false,
                   "to": "/",
                 },
@@ -227,6 +236,7 @@ ShallowWrapper {
                                           active={false}
                                           disabled={false}
                                           eventKey={1}
+                                          id="flights"
                             >
                                           Flights
                             </NavItem>
@@ -242,6 +252,7 @@ ShallowWrapper {
                                           active={false}
                                           disabled={false}
                                           eventKey={2}
+                                          id="login"
                             >
                                           Login
                             </NavItem>
@@ -267,6 +278,7 @@ ShallowWrapper {
                                     active={false}
                                     disabled={false}
                                     eventKey={1}
+                                    id="flights"
                   >
                                     Flights
                   </NavItem>
@@ -282,6 +294,7 @@ ShallowWrapper {
                                     active={false}
                                     disabled={false}
                                     eventKey={2}
+                                    id="login"
                   >
                                     Login
                   </NavItem>
@@ -304,6 +317,7 @@ ShallowWrapper {
                     active={false}
                     disabled={false}
                     eventKey={1}
+                    id="flights"
 >
                     Flights
 </NavItem>,
@@ -322,6 +336,7 @@ ShallowWrapper {
                     "children": "Flights",
                     "disabled": false,
                     "eventKey": 1,
+                    "id": "flights",
                   },
                   "ref": null,
                   "rendered": "Flights",
@@ -339,6 +354,7 @@ ShallowWrapper {
                     active={false}
                     disabled={false}
                     eventKey={2}
+                    id="login"
 >
                     Login
 </NavItem>,
@@ -357,6 +373,7 @@ ShallowWrapper {
                     "children": "Login",
                     "disabled": false,
                     "eventKey": 2,
+                    "id": "login",
                   },
                   "ref": null,
                   "rendered": "Login",
@@ -389,6 +406,7 @@ ShallowWrapper {
                     <NavbarBrand>
                               <Link
                                         activeclassname="active"
+                                        id="logo"
                                         replace={false}
                                         to="/"
                               >
@@ -416,6 +434,7 @@ ShallowWrapper {
                                                   active={false}
                                                   disabled={false}
                                                   eventKey={1}
+                                                  id="flights"
                                         >
                                                   Flights
                                         </NavItem>
@@ -431,6 +450,7 @@ ShallowWrapper {
                                                   active={false}
                                                   disabled={false}
                                                   eventKey={2}
+                                                  id="login"
                                         >
                                                   Login
                                         </NavItem>
@@ -451,6 +471,7 @@ ShallowWrapper {
               <NavbarBrand>
                             <Link
                                           activeclassname="active"
+                                          id="logo"
                                           replace={false}
                                           to="/"
                             >
@@ -478,6 +499,7 @@ ShallowWrapper {
                                                         active={false}
                                                         disabled={false}
                                                         eventKey={1}
+                                                        id="flights"
                                           >
                                                         Flights
                                           </NavItem>
@@ -493,6 +515,7 @@ ShallowWrapper {
                                                         active={false}
                                                         disabled={false}
                                                         eventKey={2}
+                                                        id="login"
                                           >
                                                         Login
                                           </NavItem>
@@ -514,6 +537,7 @@ ShallowWrapper {
                 <NavbarBrand>
                   <Link
                                     activeclassname="active"
+                                    id="logo"
                                     replace={false}
                                     to="/"
                   >
@@ -532,6 +556,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": <Link
                     activeclassname="active"
+                    id="logo"
                     replace={false}
                     to="/"
 >
@@ -546,6 +571,7 @@ ShallowWrapper {
                   "props": Object {
                     "activeclassname": "active",
                     "children": "AFL",
+                    "id": "logo",
                     "replace": false,
                     "to": "/",
                   },
@@ -590,6 +616,7 @@ ShallowWrapper {
                                                 active={false}
                                                 disabled={false}
                                                 eventKey={1}
+                                                id="flights"
                                 >
                                                 Flights
                                 </NavItem>
@@ -605,6 +632,7 @@ ShallowWrapper {
                                                 active={false}
                                                 disabled={false}
                                                 eventKey={2}
+                                                id="login"
                                 >
                                                 Login
                                 </NavItem>
@@ -630,6 +658,7 @@ ShallowWrapper {
                                         active={false}
                                         disabled={false}
                                         eventKey={1}
+                                        id="flights"
                     >
                                         Flights
                     </NavItem>
@@ -645,6 +674,7 @@ ShallowWrapper {
                                         active={false}
                                         disabled={false}
                                         eventKey={2}
+                                        id="login"
                     >
                                         Login
                     </NavItem>
@@ -667,6 +697,7 @@ ShallowWrapper {
                       active={false}
                       disabled={false}
                       eventKey={1}
+                      id="flights"
 >
                       Flights
 </NavItem>,
@@ -685,6 +716,7 @@ ShallowWrapper {
                       "children": "Flights",
                       "disabled": false,
                       "eventKey": 1,
+                      "id": "flights",
                     },
                     "ref": null,
                     "rendered": "Flights",
@@ -702,6 +734,7 @@ ShallowWrapper {
                       active={false}
                       disabled={false}
                       eventKey={2}
+                      id="login"
 >
                       Login
 </NavItem>,
@@ -720,6 +753,7 @@ ShallowWrapper {
                       "children": "Login",
                       "disabled": false,
                       "eventKey": 2,
+                      "id": "login",
                     },
                     "ref": null,
                     "rendered": "Login",

@@ -9,17 +9,17 @@ const Menu = () => {
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/" activeclassname="active">AFL</Link>
+                        <Link id="logo" to="/" activeclassname="active">AFL</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
                         <LinkContainer to="/flights">
-                            <NavItem eventKey={1}>Flights</NavItem>
+                            <NavItem id="flights" eventKey={1}>Flights</NavItem>
                         </LinkContainer>
                         <LinkContainer to="/login">
-                            <NavItem eventKey={2}>Login</NavItem>
+                            <NavItem id="login" eventKey={2}>Login</NavItem>
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
