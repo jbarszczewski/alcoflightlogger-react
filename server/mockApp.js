@@ -1,7 +1,5 @@
 /* Define some initial variables. */
 var applicationRoot = __dirname.replace(/\\/g, "/"),
-  ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
-  port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
   mockRoot = applicationRoot + '/mocks/api',
   mockFilePattern = '.json',
   mockRootPattern = mockRoot + '/**/*' + mockFilePattern,

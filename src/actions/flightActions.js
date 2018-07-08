@@ -13,13 +13,15 @@ export function addStopSuccess(stop) {
     return { type: types.ADD_STOP_SUCCESS, stop };
 }
 
-export function loadFlights() {
+export function loadFlights(userId) {
     return function (dispatch) {
-        return mockFlightApi.getAllFlights().then(flights => {
-            dispatch(loadFlightsSuccess(flights));
-        }).catch(error => {
-            throw (error);
-        });
+        return fetch(`api/users/${userId}/flights`)
+            .then(res => res.json())
+            .then(flights => {
+                dispatch(loadFlightsSuccess(flights));
+            }).catch(error => {
+                throw (error);
+            });
     };
 }
 

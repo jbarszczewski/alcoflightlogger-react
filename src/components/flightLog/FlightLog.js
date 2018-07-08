@@ -14,10 +14,6 @@ class FlightLog extends Component {
         this.addNewStop = this.addNewStop.bind(this)
     }
 
-    componentWillMount() {
-        this.props.actions.loadFlights();
-    }
-
     onCreateNewFlight() {
         this.props.actions.addFlight({ stops: [] })
     }
