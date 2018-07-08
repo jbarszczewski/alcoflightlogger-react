@@ -8,7 +8,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "yarn build && surge ./build afl.surge.sh",
-    "start": "node ./server/bin/www"
+    "start": "node ./server/bin/www",
+    "start-mock": "node ./server/bin/www mock"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -16,8 +17,11 @@
     "debug": "~2.6.9",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "errorhandler": "^1.5.0",
     "express": "~4.16.0",
     "fetch-mock": "^6.4.3",
+    "fs": "^0.0.1-security",
+    "glob": "^7.1.2",
     "http-errors": "~1.6.2",
     "mongoose": "^5.1.3",
     "morgan": "~1.9.0",

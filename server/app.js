@@ -16,13 +16,13 @@ app.use(cookieParser());
 app.use('/api/user', userRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.status(404);
   res.send();
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -36,7 +36,7 @@ var secrets = require('./config/secrets');
 var url = `mongodb://${secrets.dbUser}:${secrets.dbPassword}@ds139890.mlab.com:39890/afl-dev`;
 mongoose.Promise = require('bluebird');
 mongoose.connect(url, { promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('Connection to db succesful'))
+  .then(() => console.log('Connection to db succesful'))
   .catch((err) => console.error(err));
 
 module.exports = app;

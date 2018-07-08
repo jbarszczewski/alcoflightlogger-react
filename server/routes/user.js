@@ -4,17 +4,17 @@ var User = require('../models/user');
 
 
 /* GET user. */
-router.get('/:email', function(req, res, next) {      
-  User.findOne({email: req.params.email}, function(err, users) {
-    if(err) return next(err);
-    res.json(users);
+router.get('/:email', function (req, res, next) {
+  User.findOne({ email: req.params.email }, function (err, user) {
+    if (err) return next(err);
+    res.json(user);
   })
 });
 
 /* POST user. */
-router.post('/', function(req, res, next) {
-  User.create(req.body, function(err, post){
-    if(err) return next(err);
+router.post('/', function (req, res, next) {
+  User.create(req.body, function (err, post) {
+    if (err) return next(err);
     res.json(post);
   });
 });
