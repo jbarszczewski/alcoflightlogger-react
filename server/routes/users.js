@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
-
-/* GET user. */
-router.get('/:email', function (req, res, next) {
-  User.findOne({ email: req.params.email }, function (err, user) {
+/* GET login. */
+router.post('/login', function (req, res, next) {
+  User.findOne({ email: req.body.email }, function (err, user) {
     if (err) return next(err);
     res.json(user);
   })
