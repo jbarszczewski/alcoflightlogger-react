@@ -20,11 +20,13 @@ class FlightLog extends Component {
     }
 
     addNewStop() {
-        this.props.actions.addStop({
-            flightId: this.props.currentFlight._id,
-            lat: this.props.location.lat,
-            lng: this.props.location.lng
-        });
+        this.props.actions.addStop(
+            this.props.currentFlight._id,
+            {
+                date: new Date(),
+                lat: this.props.location.lat,
+                lng: this.props.location.lng
+            });
     }
 
     render() {
@@ -66,8 +68,8 @@ class FlightLog extends Component {
                                     Stops:
                                     <ul>
                                         {this.props.currentFlight.stops.map(stop =>
-                                            <li key={stop.id}>
-                                                Id:{stop.id}, lat:{stop.lat}, lng:{stop.lng}
+                                            <li key={stop._id}>
+                                                Id:{stop._id}, lat:{stop.lat}, lng:{stop.lng}
                                             </li>
                                         )}
                                     </ul>
@@ -93,6 +95,7 @@ FlightLog.propTypes = {
     currentFlight: PropTypes.object,
     location: PropTypes.object.isRequired,
     account: PropTypes.object,
+    error: PropTypes.string,
     loading: PropTypes.bool
 };
 
@@ -100,7 +103,8 @@ function mapStateToProps(state) {
     return {
         currentFlight: state.currentFlight,
         account: state.account,
-        location: state.location
+        location: state.location,
+        error: state.error
     };
 }
 

@@ -1,5 +1,4 @@
 import * as types from './actionTypes';
-import mockFlightApi from '../api/mockFlightApi';
 
 export function loadFlightsSuccess(flights) {
     return { type: types.LOAD_FLIGHTS_SUCCESS, payload: flights };
@@ -56,18 +55,28 @@ export function addFlight(flight) {
             .then(res => res.json())
             .then(savedFlight => {
                 dispatch(addFlightSuccess(savedFlight));
+                dispatch(loadLastFlightSuccess(savedFlight));
             }).catch(error => {
                 throw (error);
             });
     };
 }
 
-export function addStop(stop) {
+export function addStop(flightId, stop) {
     return function (dispatch) {
-        return mockFlightApi.addStop(stop)
-            .then(dispatch(addStopSuccess(stop)))
-            .catch(error => {
+        return fetch(`api/flights/${flightId}/stops`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(stop)
+        })
+            .then(res => res.json())
+            .then(savedFlight => {
+                dispatch(loadLastFlightSuccess(savedFlight));
+            }).catch(error => {
                 throw (error);
-            })
-    }
+            });
+    };
 }

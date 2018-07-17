@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Flight = require('../models/flight');
+var mongoose = require('mongoose');
 
 /* GET flights. */
 router.get('/users/:userId/flights', function (req, res, next) {
@@ -19,13 +20,23 @@ router.get('/users/:userId/lastFlight', function (req, res, next) {
 });
 
 /* POST flight. */
-router.post('/users/:userId/flights', function (req, res, next) {
-    console.log(req.params.userId);
+router.post('/users/:userId/flights', function (req, res) {
     req.body.userId = req.params.userId;
-    Flight.create(req.body, function (err, post) {
-        if (err) return next(err);
-        res.json(post);
+    Flight.create(req.body, function (err, flight) {
+        if (err) return res.send(err);
+        res.json(flight);
     });
+});
+
+/* POST stop. */
+router.post('/flights/:flightId/stops', function (req, res, next) {
+    Flight.findByIdAndUpdate(req.params.flightId,
+        { $push: { "stops": req.body } },
+        { safe: true, upsert: true, new: true },
+        function (err, flight) {
+            if (err) return res.send(err);
+            res.json(flight)
+        });
 });
 
 module.exports = router;
