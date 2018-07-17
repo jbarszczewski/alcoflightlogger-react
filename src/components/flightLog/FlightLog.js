@@ -55,7 +55,7 @@ class FlightLog extends Component {
                         </div>
                     </Col>
                     <Col sm={6} md={3}>
-                        {isLoggedIn && this.props.currentFlight ?
+                        {isLoggedIn && this.props.currentFlight.stops ?
                             <div style={{ backgroundColor: 'lightgray' }}>
                                 <p>Current flight</p>
                                 <div>

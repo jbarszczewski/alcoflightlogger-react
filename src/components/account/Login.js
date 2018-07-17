@@ -48,8 +48,10 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.account._id !== this.props.account._id)
+        if (newProps.account._id !== this.props.account._id) {
             this.props.actions.loadLastFlight(newProps.account._id);
+            this.props.history.push('/');
+        }
     }
 
     render() {
@@ -88,7 +90,8 @@ class Login extends Component {
 Login.propTypes = {
     actions: PropTypes.object.isRequired,
     account: PropTypes.object,
-    error: PropTypes.string
+    error: PropTypes.string,
+    history: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
