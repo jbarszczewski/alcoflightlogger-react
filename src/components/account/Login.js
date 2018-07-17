@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as accountActions from '../../actions/accountActions';
+import * as flightActions from '../../actions/flightActions';
 import { Button, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
 
 class Login extends Component {
@@ -44,6 +45,11 @@ class Login extends Component {
 
     login() {
         this.props.actions.login({ email: this.state.email, password: this.state.password });
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.account._id !== this.props.account._id)
+            this.props.actions.loadLastFlight(newProps.account._id);
     }
 
     render() {
@@ -94,7 +100,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(accountActions, dispatch)
+        actions: bindActionCreators(Object.assign({}, accountActions, flightActions), dispatch)
     }
 }
 

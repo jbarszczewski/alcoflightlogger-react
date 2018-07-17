@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as flightActions from '../../actions/flightActions';
 import Map from '../map/Map';
 import { Button, Col, Grid, Row } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class FlightLog extends Component {
     constructor(props, context) {
@@ -15,27 +16,37 @@ class FlightLog extends Component {
     }
 
     onCreateNewFlight() {
-        this.props.actions.addFlight({ stops: [] })
+        this.props.actions.addFlight({ userId: this.props.account._id, stops: [] })
     }
 
     addNewStop() {
         this.props.actions.addStop({
-            flightId: this.props.flights.length,
+            flightId: this.props.currentFlight._id,
             lat: this.props.location.lat,
             lng: this.props.location.lng
         });
     }
 
     render() {
+        const isLoggedIn = this.props.account && this.props.account.name;
         return (
             <Grid>
                 <Row>
-                    <Button
-                        disabled={this.props.loading}
-                        bsStyle="primary"
-                        bsSize="large"
-                        block
-                        onClick={this.addNewStop}>{this.props.loading ? 'Saving...' : 'Fuel stop'}</Button>
+                    {isLoggedIn ?
+                        <Button
+                            disabled={this.props.loading}
+                            bsStyle="primary"
+                            bsSize="large"
+                            block
+                            onClick={this.addNewStop}>{this.props.loading ? 'Saving...' : 'Fuel stop'}</Button>
+                        :
+                        <LinkContainer to="/login">
+                            <Button
+                                bsStyle="primary"
+                                bsSize="large"
+                                block>Log in</Button>
+                        </LinkContainer>
+                    }
                 </Row>
                 <Row className="show-grid">
                     <Col sm={6} md={3}>
@@ -44,13 +55,17 @@ class FlightLog extends Component {
                         </div>
                     </Col>
                     <Col sm={6} md={3}>
-                        <div style={{ backgroundColor: 'lightgray' }}>
-                            <p>Twoje loty</p>
-                            {this.props.flights.map(flight =>
-                                <div key={flight.id}>
-                                    Id:{flight.id}, Stops:
+                        {isLoggedIn && this.props.currentFlight ?
+                            <div style={{ backgroundColor: 'lightgray' }}>
+                                <p>Current flight</p>
+                                <div>
+                                    Id: {this.props.currentFlight._id}
+                                    <br />
+                                    Created on: {this.props.currentFlight.createdOn}
+                                    <br />
+                                    Stops:
                                     <ul>
-                                        {flight.stops.map(stop =>
+                                        {this.props.currentFlight.stops.map(stop =>
                                             <li key={stop.id}>
                                                 Id:{stop.id}, lat:{stop.lat}, lng:{stop.lng}
                                             </li>
@@ -58,13 +73,14 @@ class FlightLog extends Component {
                                     </ul>
 
                                 </div>
-                            )}
-
-                            <Button
-                                disabled={this.props.loading}
-                                bsStyle="primary"
-                                onClick={this.onCreateNewFlight}>{this.props.loading ? 'Saving...' : 'New flight'}</Button>
-                        </div>
+                                <Button
+                                    disabled={this.props.loading}
+                                    bsStyle="primary"
+                                    onClick={this.onCreateNewFlight}>{this.props.loading ? 'Saving...' : 'New flight'}</Button>
+                            </div>
+                            :
+                            <p>Siging to see current flight</p>
+                        }
                     </Col>
                 </Row>
             </Grid>
@@ -74,16 +90,17 @@ class FlightLog extends Component {
 
 FlightLog.propTypes = {
     actions: PropTypes.object.isRequired,
-    flights: PropTypes.array.isRequired,
+    currentFlight: PropTypes.object,
     location: PropTypes.object.isRequired,
+    account: PropTypes.object,
     loading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
     return {
-        flights: state.flights,
-        location: state.location,
-        loading: false
+        currentFlight: state.currentFlight,
+        account: state.account,
+        location: state.location
     };
 }
 
