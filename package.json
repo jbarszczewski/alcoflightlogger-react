@@ -6,10 +6,7 @@
     "start-app": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "yarn build && surge ./build afl.surge.sh",
     "start": "node ./server/bin/www",
-    "start-debug": "node --inspect-brk ./server/bin/www",
     "start-mock": "node ./server/bin/www mock"
   },
   "dependencies": {

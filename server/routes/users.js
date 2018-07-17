@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
-/* GET login. */
+/* POST login. */
 router.post('/login', function (req, res, next) {
   User.findOne({ email: req.body.email }, function (err, user) {
     if (err) return next(err);
-    res.json(user);
+    if (user) return res.json(user);
+    res.status(400).send('Invelid email or password');
   })
 });
 
