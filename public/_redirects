@@ -1,4 +1,4 @@
 /api/*  https://afl-api.herokuapp.com/api/:splat 200
 /api/*  https://afl-api.herokuapp.com/api/:splat 404
 /api/*  https://afl-api.herokuapp.com/api/:splat 500
-http://afl.netlify.com/* https://afl.netlify/ 301!
+http://afl.netlify.com/* https://afl.netlify.com/ 301!
